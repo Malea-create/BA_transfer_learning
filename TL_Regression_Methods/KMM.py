@@ -8,13 +8,10 @@ import numpy as np
 import sklearn.metrics
 from cvxopt import matrix, solvers
 import os
-from sklearn.neighbors import KNeighborsRegressorv
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import accuracy_score
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--norm', action='store_true')
-args = parser.parse_args()
 
 def kernel(ker, X1, X2, gamma):
     K = None
