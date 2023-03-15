@@ -53,7 +53,7 @@ class LWE:
         
         if classifers==None:
             classifers=[]
-            classifers.append(SVR(kernel="linear", C=0.025))
+            classifers.append(SVR(kernel="linear", C=1.0))
             classifers.append(SVR(gamma=2, C=1))
             #classifers.append(LR(random_state=0, solver='lbfgs'))
             #classifers.append(Perceptron(tol=1e-3, random_state=0))

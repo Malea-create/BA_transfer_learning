@@ -9,6 +9,8 @@ import scipy.linalg
 import sklearn.metrics
 from sklearn.neighbors import KNeighborsRegressor
 
+
+
 def kernel(ker, X1, X2, gamma):
     K = None
     if not ker or ker == 'primal':
