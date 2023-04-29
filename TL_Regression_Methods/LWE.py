@@ -1,3 +1,10 @@
+"""
+    Source of this TL Method: https://github.com/FuzhenZhuang/Transfer-Learning-Toolkit/blob/master/traditional%20transfer%20learning/parameter-based/LWE.py
+    Created on 2019/11/20 
+    @author: Fuzhen Zhuang
+    
+"""
+
 import numpy as np
 from sklearn.cluster import SpectralClustering, KMeans
 from sklearn.cluster import AgglomerativeClustering, DBSCAN
@@ -9,11 +16,7 @@ from sklearn.linear_model import Perceptron
 from collections import Counter
 from sklearn import metrics
 
-#TODO add interface for user to choose proper clustering algorithm
-#! CLUTO are used in the origianl paper
-#? where is the proper clustering algorithm
-#! the parameter threshold 0.5 for purity of clustering is unreasonable 
-#! for binary classification, the purity of clustering is always higher than 0.5
+
 class LWE:
     def __init__(self, delta=0.7, c_cluster=2):
         self.delta = delta

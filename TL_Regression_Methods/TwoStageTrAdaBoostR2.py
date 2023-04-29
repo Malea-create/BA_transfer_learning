@@ -1,8 +1,6 @@
 """
-TwoStageTrAdaBoostR2 algorithm
-
-based on algorithm 3 in paper "Boosting for Regression Transfer".
-
+    Source of this TL Method: https://github.com/jay15summer/Two-stage-TrAdaboost.R2
+    
 """
 
 import numpy as np
@@ -265,6 +263,11 @@ class TwoStageTrAdaBoostR2:
             self.errors_.append(np.array(error).mean())
 
             sample_weight = self._twostage_adaboostR2(istep, X, y, sample_weight)
+            
+            # Test print
+            print(sample_weight, len(sample_weight))
+            print(target_weight, len(target_weight))
+            print(source_weight, len(source_weight))
 
             if sample_weight is None:
                 break
@@ -280,6 +283,7 @@ class TwoStageTrAdaBoostR2:
             if istep < self.steps - 1:
                 # Normalize
                 sample_weight /= sample_weight_sum
+
         return self
 
 

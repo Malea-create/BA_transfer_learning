@@ -1,5 +1,8 @@
 """
-Kernel Mean Matching
+    Source of this TL Method: https://github.com/jindongwang/transferlearning/tree/master/code/traditional
+    Created on 21:29 2018/11/12 
+    @author: Jindong Wang
+    
 #  1. Gretton, Arthur, et al. "Covariate shift by kernel mean matching." Dataset shift in machine learning 3.4 (2009): 5.
 #  2. Huang, Jiayuan, et al. "Correcting sample selection bias by unlabeled data." Advances in neural information processing systems. 2006.
 """
@@ -12,6 +15,9 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import accuracy_score
 import argparse
 
+'''parser = argparse.ArgumentParser()
+parser.add_argument('--norm', action='store_true')
+args = parser.parse_args()'''
 
 def kernel(ker, X1, X2, gamma):
     K = None
@@ -26,7 +32,7 @@ def kernel(ker, X1, X2, gamma):
         else:
             K = sklearn.metrics.pairwise.rbf_kernel(np.asarray(X1), None, gamma)
     return K
-    
+
 class KMM:
     def __init__(self, kernel_type='linear', gamma=1.0, B=1.0, eps=None):
         '''
@@ -60,6 +66,27 @@ class KMM:
         G = matrix(np.r_[np.ones((1, ns)), -np.ones((1, ns)), np.eye(ns), -np.eye(ns)])
         h = matrix(np.r_[ns * (1 + self.eps), ns * (self.eps - 1), self.B * np.ones((ns,)), np.zeros((ns,))])
 
-        sol = solvers.qp(K, -kappa, G, h)
+        sol = solvers.qp(K, -kappa, G, h, kktsolver='ldl', options={'kktreg':1e-9})
         beta = np.array(sol['x'])
         return beta
+
+def load_data(folder, domain):
+    from scipy import io
+    data = io.loadmat(os.path.join(folder, domain + '_fc6.mat'))
+    return data['fts'], data['labels']
+
+
+def knn_classify(Xs, Ys, Xt, Yt, k=1, norm=False):
+    model = KNeighborsRegressor(n_neighbors=k)
+    Ys = Ys.ravel()
+    Yt = Yt.ravel()
+    if norm:
+        from sklearn.preprocessing import StandardScaler
+        scaler = StandardScaler()
+        Xs = scaler.fit_transform(Xs)
+        Xt = scaler.fit_transform(Xt)
+    model.fit(Xs, Ys)
+    Yt_pred = model.predict(Xt)
+    acc = accuracy_score(Yt, Yt_pred)
+    print(f'Accuracy using kNN: {acc * 100:.2f}%')
+

@@ -1,7 +1,8 @@
-# encoding=utf-8
 """
-    Created on 16:31 2018/11/13 
+    Source of this TL Method: https://github.com/jindongwang/transferlearning/tree/master/code/traditional
+    Created on 21:29 2018/11/12 
     @author: Jindong Wang
+    
 """
 
 import numpy as np
