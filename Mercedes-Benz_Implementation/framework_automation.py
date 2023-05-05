@@ -144,11 +144,16 @@ def tradaboost_weighting(df_src, df_tar):
                             steps = steps, fold = fold, 
                             random_state = random_state)
 
+        regr_test = TrAdaBoost.TwoStageTrAdaBoostR2( DecisionTreeRegressor(max_depth=4),
+                            n_estimators = n_estimators, sample_size = sample_size, 
+                            steps = 1, fold = fold, 
+                            random_state = random_state)
+
         q = Queue()
 
         # Start process from multiprocesses
 
-        p = Process(target=regr.fit, args=(X, y, None, q))
+        p = Process(target=regr_test.fit, args=(X, y, None, q))
         p.start()
 
         # Wait 10 seconds for the process
@@ -174,8 +179,10 @@ def tradaboost_weighting(df_src, df_tar):
 
         else:
 
-            # get return value from process
+            # get return value from process with 10 steps
 
+            p = Process(target=regr.fit, args=(X, y, None, q))
+            p.start()
             beta = q.get()
             beta = beta[1]
 
