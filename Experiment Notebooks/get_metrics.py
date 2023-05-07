@@ -19,9 +19,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # define MMD
 
 """
-    Source of this MMD: https://www.onurtunali.com/ml/2019/03/08/maximum-mean-discrepancy-in-machine-learning.html
-    Created on 2019/03/08 
-    @author: Onur Tunali
+    Source: https://www.onurtunali.com/ml/2019/03/08/maximum-mean-discrepancy-in-machine-learning.html
     
 """
 
@@ -67,6 +65,16 @@ def MMD(x, y, kernel):
 
     return torch.mean(XX + YY - 2. * XY)
 
+"""
+    Ende of code taken from: https://www.onurtunali.com/ml/2019/03/08/maximum-mean-discrepancy-in-machine-learning.html
+    
+"""
+
+"""
+    Source: https://stackoverflow.com/questions/50307707/how-do-i-convert-a-pandas-dataframe-to-a-pytorch-tensor
+    
+"""
+
 # determine the supported device
 
 def get_device():
@@ -82,7 +90,10 @@ def df_to_tensor(df):
     device = get_device()
     return torch.from_numpy(df.values).float().to(device)
 
-
+"""
+    Ende of code taken from: https://stackoverflow.com/questions/50307707/how-do-i-convert-a-pandas-dataframe-to-a-pytorch-tensor
+    
+"""
 
 def get_transferability_metrics(df_src, df_tar):
 

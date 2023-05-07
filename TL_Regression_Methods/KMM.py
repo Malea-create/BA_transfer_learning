@@ -1,10 +1,6 @@
 """
-    Source of this TL Method: https://github.com/jindongwang/transferlearning/tree/master/code/traditional
-    Created on 21:29 2018/11/12 
-    @author: Jindong Wang
-    
-#  1. Gretton, Arthur, et al. "Covariate shift by kernel mean matching." Dataset shift in machine learning 3.4 (2009): 5.
-#  2. Huang, Jiayuan, et al. "Correcting sample selection bias by unlabeled data." Advances in neural information processing systems. 2006.
+    Source of this TL Method: https://github.com/jindongwang/transferlearning/tree/master/code/traditional (12.03.23)
+
 """
 
 import numpy as np
@@ -15,9 +11,6 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import accuracy_score
 import argparse
 
-'''parser = argparse.ArgumentParser()
-parser.add_argument('--norm', action='store_true')
-args = parser.parse_args()'''
 
 def kernel(ker, X1, X2, gamma):
     K = None
@@ -70,23 +63,4 @@ class KMM:
         beta = np.array(sol['x'])
         return beta
 
-def load_data(folder, domain):
-    from scipy import io
-    data = io.loadmat(os.path.join(folder, domain + '_fc6.mat'))
-    return data['fts'], data['labels']
-
-
-def knn_classify(Xs, Ys, Xt, Yt, k=1, norm=False):
-    model = KNeighborsRegressor(n_neighbors=k)
-    Ys = Ys.ravel()
-    Yt = Yt.ravel()
-    if norm:
-        from sklearn.preprocessing import StandardScaler
-        scaler = StandardScaler()
-        Xs = scaler.fit_transform(Xs)
-        Xt = scaler.fit_transform(Xt)
-    model.fit(Xs, Ys)
-    Yt_pred = model.predict(Xt)
-    acc = accuracy_score(Yt, Yt_pred)
-    print(f'Accuracy using kNN: {acc * 100:.2f}%')
 

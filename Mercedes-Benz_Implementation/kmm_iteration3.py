@@ -1,18 +1,6 @@
-from sklearn.metrics.pairwise import paired_cosine_distances
-from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.metrics.pairwise import manhattan_distances
-from sklearn.metrics.pairwise import paired_cosine_distances
-from scipy.stats import wasserstein_distance
-from scipy.stats import ks_2samp
-from scipy.spatial import distance
-from scipy.special import kl_div
-from sklearn.metrics import mean_absolute_percentage_error
-
-
 """
-Kernel Mean Matching
-#  1. Gretton, Arthur, et al. "Covariate shift by kernel mean matching." Dataset shift in machine learning 3.4 (2009): 5.
-#  2. Huang, Jiayuan, et al. "Correcting sample selection bias by unlabeled data." Advances in neural information processing systems. 2006.
+    his code has been taken and adapted from the following Scource: https://github.com/jindongwang/transferlearning/tree/master/code/traditional (12.03.23)
+
 """
 
 import numpy as np

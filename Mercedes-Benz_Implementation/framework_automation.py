@@ -1,12 +1,18 @@
 import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
-import TrAdaBoost
-import kmm
+import TrAdaBoost_iteration_3
+import KMM_iteration_3
 from sklearn.metrics import pairwise_distances
 from scipy.stats import wasserstein_distance
 import time
 from multiprocessing import Process, Queue
+
+'''
+
+Excerpt from the original confidential repository
+
+'''
 
 def execute_sds_and_ntm(training_set, source_domain_list, ntm_method):
 

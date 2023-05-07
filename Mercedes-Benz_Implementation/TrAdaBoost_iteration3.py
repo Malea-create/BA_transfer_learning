@@ -1,8 +1,6 @@
 """
-TwoStageTrAdaBoostR2 algorithm
-
-based on algorithm 3 in paper "Boosting for Regression Transfer".
-
+    This code has been taken and adapted from the following Scource: https://github.com/jay15summer/Two-stage-TrAdaboost.R2 (12.03.23)
+    
 """
 
 import numpy as np
@@ -11,9 +9,6 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import KFold
 
-################################################################################
-## the second stage
-################################################################################
 class Stage2_TrAdaBoostR2:
     def __init__(self,
                  base_estimator = DecisionTreeRegressor(max_depth=4),
@@ -177,9 +172,6 @@ class Stage2_TrAdaBoostR2:
         return predictions[np.arange(X.shape[0]), median_estimators]
 
 
-################################################################################
-## the whole two stages
-################################################################################
 class TwoStageTrAdaBoostR2:
     def __init__(self,
                  base_estimator = DecisionTreeRegressor(max_depth=4),
