@@ -3,7 +3,7 @@
 Code of the Bachelor thesis on the topic of transfer learning
 
 This repository contains:
-- the Benchmark datasets and results of the laboratory experiment (residual value dataset and result tabelds of the mercedes-benz data are confidential)-> data / result_data
+- results of the laboratory experiment (residual value dataset and result tabelds of the mercedes-benz data are confidential)-> result_data
 - the different methods and notebooks to perform the laboratory experiment -> Experiment Notebooks
 - the different methods and notebooks to perform the different iterations of the framework demonstration on the validation sets -> Experiment Notebooks
 - the implementation of the framework automation and the algorithms for Mercedes-Benz AG (the rest is confidential)- > Mercedes-Benz_Implementation
